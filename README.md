@@ -8,5 +8,5 @@ It's about top 10 videogames in my opinion
 
 ### Can't open it?
 
-Try this:https://htmlpreview.github.io/?https://github.com/Catgameplay/demo-repo/blob/main/index.html
+Try this:https://catgameplay.github.io/demo-repo/
 Hope this helps
