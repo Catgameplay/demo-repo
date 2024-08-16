@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat</title>
+    <title>AI Chatdadada</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -181,12 +181,12 @@
     </div>
 
     <script>
-        let x = 0;
+        let messageCount = 0;
 
         function submitMessage() {
-            var message = document.getElementById("message").value;
+            const message = document.getElementById("message").value;
             if (message.trim() !== "") {
-                var container = document.getElementById("bubble-container");
+                const container = document.getElementById("bubble-container");
 
                 // Remove existing random bubbles if any
                 var existingRandomBubbles = document.querySelectorAll('.random-bubble');
@@ -195,24 +195,24 @@
                 });
 
                 // Create a new message container for user messages
-                var messageContainer = document.createElement("div");
+                const messageContainer = document.createElement("div");
                 messageContainer.className = "message-container user-message";
                 
                 // Create the label for user messages
-                var userLabel = document.createElement("div");
+                const userLabel = document.createElement("div");
                 userLabel.className = "message-label";
                 userLabel.innerHTML = '<img src="user.png" alt="User">You';
                 
                 // Create a new speech bubble
-                var bubble = document.createElement("div");
+                const bubble = document.createElement("div");
                 bubble.className = "bubble";
                 bubble.innerText = message;
 
                 // Create a trash icon
-                var trashIcon = document.createElement("div");
+                const trashIcon = document.createElement("div");
                 trashIcon.className = "trash-icon";
                 trashIcon.onclick = function() {
-                    var deletedBubble = document.createElement("div");
+                    const deletedBubble = document.createElement("div");
                     deletedBubble.className = "deleted-message";
                     deletedBubble.innerText = "The original message was deleted";
                     
@@ -231,14 +231,14 @@
                 container.prepend(messageContainer);
 
                 // Create and add the AI response bubble
-                var aiMessageContainer = document.createElement("div");
+                const aiMessageContainer = document.createElement("div");
                 aiMessageContainer.className = "message-container ai-message";
                 
-                var aiLabel = document.createElement("div");
+                const aiLabel = document.createElement("div");
                 aiLabel.className = "ai-message-label";
-                aiLabel.innerHTML = '<img src="ai.png" alt="AI">Dr DisRespect';
+                aiLabel.innerHTML = '<img src="ai.png" alt="AI">ChatGPT';
                 
-                var aiBubble = document.createElement("div");
+                const aiBubble = document.createElement("div");
                 aiBubble.className = "bubble";
                 aiBubble.innerText = getAIResponse(); // AI bubble content
                 
@@ -257,11 +257,11 @@
         }
 
         function getAIResponse() {
-            x = (x + 1) % 2;
-            if (x === 1) {
-                return "Hello! I'm here to help. How can I assist you today?"; // AI response when x = 1
+            messageCount = (messageCount + 1) % 2;
+            if (messageCount === 1) {
+                return "Hello there! How can I assist you today? Feel free to ask me anything."; // ChatGPT-like response
             } else {
-                return "I'm here to provide you with information and support. Feel free to ask me anything!"; // AI response when x = 0
+                return "I'm here to help with any questions you might have. What can I do for you?"; // ChatGPT-like response
             }
         }
 
