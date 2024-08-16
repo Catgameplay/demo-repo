@@ -7,3 +7,5 @@ https://paste.ppeb.me/igihoqidoq.xml
 https://paste.ppeb.me/biveqafoli.xml
 old ai:
 https://paste.ppeb.me/joxekiyari.xml
+midlle ai:
+https://paste.ppeb.me/xonibugihu.xml
