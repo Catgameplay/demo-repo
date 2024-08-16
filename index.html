@@ -138,19 +138,6 @@
             opacity: 0.7;
         }
 
-        .random-bubble {
-            background-color: white;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 20px;
-            max-width: 50%;
-            position: relative;
-            word-wrap: break-word;
-            color: black;
-            margin-bottom: 30px;
-            box-sizing: border-box;
-        }
-
         .deleted-message {
             background-color: #e0e0e0;
             padding: 15px;
@@ -186,7 +173,7 @@
 </head>
 <body>
     <div class="container" id="bubble-container">
-        <!-- Random bubbles will be added here -->
+        <!-- Messages will be added here -->
     </div>
     <div class="input-area">
         <textarea id="message" placeholder="Type anything here..."></textarea>
@@ -194,16 +181,6 @@
     </div>
 
     <script>
-        var x = 0; // Initialize x
-
-        function getRandomNumber() {
-            return Math.floor(Math.random() * 255) + 1; // Random number between 1 and 255
-        }
-
-        function getRandomString() {
-            return `${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}`; // Updated format
-        }
-
         function submitMessage() {
             var message = document.getElementById("message").value;
             if (message.trim() !== "") {
@@ -214,19 +191,6 @@
                 existingRandomBubbles.forEach(function(bubble) {
                     bubble.remove();
                 });
-
-                // Create and add the random numbers bubble to the left
-                var randomBubble = document.createElement("div");
-                randomBubble.className = "random-bubble";
-
-                // Use x to determine the content
-                if (x !== 1) {
-                    randomBubble.innerText = "Hello";
-                } else {
-                    randomBubble.innerText = `Is this you lil bro:\n${getRandomString()}`;
-                }
-
-                container.prepend(randomBubble);
 
                 // Create a new message container for user messages
                 var messageContainer = document.createElement("div");
@@ -264,12 +228,6 @@
                 // Add the new message container to the top of the bubble container
                 container.prepend(messageContainer);
 
-                // Clear the message box
-                document.getElementById("message").value = "";
-
-                // Scroll to the newest bubble
-                container.scrollTop = container.scrollHeight;
-
                 // Create and add the AI response bubble
                 var aiMessageContainer = document.createElement("div");
                 aiMessageContainer.className = "message-container ai-message";
@@ -288,12 +246,20 @@
                 // Add the AI message container to the top of the bubble container
                 container.prepend(aiMessageContainer);
 
+                // Clear the message box
+                document.getElementById("message").value = "";
+
                 // Scroll to the newest bubble
                 container.scrollTop = container.scrollHeight;
-
-                // Update x for next message
-                x = (x + 1) % 2;
             }
+        }
+
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 255) + 1; // Random number between 1 and 255
+        }
+
+        function getRandomString() {
+            return `${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}`; // Updated format
         }
 
         document.getElementById("message").addEventListener("keydown", function(event) {
