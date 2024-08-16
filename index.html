@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tester</title>
+    <title>AI Test</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -194,6 +194,8 @@
     </div>
 
     <script>
+        let isAiResponsePending = false;
+
         function getRandomNumber() {
             return Math.floor(Math.random() * 255) + 1; // Random number between 1 and 255
         }
@@ -252,29 +254,39 @@
                 // Add the random numbers bubble before the message bubble
                 container.prepend(randomBubble);
 
-                // Create and add the AI response bubble
-                var aiMessageContainer = document.createElement("div");
-                aiMessageContainer.className = "message-container ai-message";
-                
-                var aiLabel = document.createElement("div");
-                aiLabel.className = "ai-message-label";
-                aiLabel.innerHTML = '<img src="ai.png" alt="AI">Dr DisRespect';
-                
-                var aiBubble = document.createElement("div");
-                aiBubble.className = "bubble";
-                aiBubble.innerText = getRandomString(); // AI bubble content
-                
-                aiMessageContainer.appendChild(aiLabel);
-                aiMessageContainer.appendChild(aiBubble);
-                
-                // Add the AI message container to the top of the bubble container
-                container.prepend(aiMessageContainer);
-
                 // Clear the message box
                 document.getElementById("message").value = "";
 
                 // Scroll to the newest bubble
                 container.scrollTop = container.scrollHeight;
+
+                // Ensure only one AI response is pending
+                if (!isAiResponsePending) {
+                    isAiResponsePending = true;
+
+                    // Create and add the AI response bubble
+                    var aiMessageContainer = document.createElement("div");
+                    aiMessageContainer.className = "message-container ai-message";
+                    
+                    var aiLabel = document.createElement("div");
+                    aiLabel.className = "ai-message-label";
+                    aiLabel.innerHTML = '<img src="ai.png" alt="AI">Dr DisRespect';
+                    
+                    var aiBubble = document.createElement("div");
+                    aiBubble.className = "bubble";
+                    aiBubble.innerText = getRandomString(); // AI bubble content
+                    
+                    aiMessageContainer.appendChild(aiLabel);
+                    aiMessageContainer.appendChild(aiBubble);
+                    
+                    // Add the AI message container to the top of the bubble container
+                    container.prepend(aiMessageContainer);
+
+                    // Reset the AI response flag after a delay
+                    setTimeout(function() {
+                        isAiResponsePending = false;
+                    }, 1000); // Adjust delay as needed
+                }
             }
         }
 
