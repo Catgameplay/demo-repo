@@ -14,16 +14,16 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+            overflow: hidden; /* Prevent overflow */
         }
 
         .container {
-            display: flex;
-            flex-direction: column-reverse;
-            justify-content: flex-end;
             flex-grow: 1;
             padding: 20px;
             background-color: #fff;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse; /* New messages appear at the top */
         }
 
         .input-area {
@@ -31,10 +31,11 @@
             align-items: center;
             padding: 10px;
             background-color: #f1f1f1;
-            position: sticky;
+            position: fixed; /* Fixed position */
             bottom: 0;
             width: 100%;
             box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1; /* Ensure input area is above other content */
         }
 
         textarea {
@@ -77,28 +78,23 @@
         .bubble:before {
             content: '';
             position: absolute;
-            bottom: 0;
-            right: -15px;
-            width: 15px;
-            height: 15px;
-            background-color: #e0f7fa;
-            transform: rotate(45deg);
-            clip-path: polygon(100% 0, 100% 100%, 0 100%);
-        }
-
-        .bubble-container {
-            display: flex;
-            flex-direction: column-reverse;
+            bottom: -10px; /* Position below the bubble */
+            right: 10px;  /* Position to the right of the bubble */
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #e0f7fa; /* Match bubble color */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="bubble-container" class="bubble-container"></div>
-        <div class="input-area">
-            <textarea id="message" placeholder="Type anything here..."></textarea>
-            <button onclick="submitMessage()">Submit</button>
-        </div>
+    <div class="container" id="bubble-container">
+        <!-- Bubbles will be added here -->
+    </div>
+    <div class="input-area">
+        <textarea id="message" placeholder="Type anything here..."></textarea>
+        <button onclick="submitMessage()">Submit</button>
     </div>
 
     <script>
