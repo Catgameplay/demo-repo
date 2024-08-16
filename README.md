@@ -5,3 +5,5 @@ https://paste.ppeb.me/ogazefacan.xml
 404:
 https://paste.ppeb.me/igihoqidoq.xml
 https://paste.ppeb.me/biveqafoli.xml
+old ai:
+https://paste.ppeb.me/joxekiyari.xml
