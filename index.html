@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat</title>
+    <title>AI Test</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -73,6 +73,7 @@
             flex-direction: column;
             margin: 15px 0; /* Increased margin for spacing */
             max-width: 75%;
+            align-items: flex-end; /* Align all content to the right */
         }
 
         .message-label {
@@ -80,6 +81,7 @@
             align-items: center;
             margin-bottom: 5px; /* Margin below the label */
             font-weight: bold;
+            margin-right: 10px; /* Move label to the right */
         }
 
         .message-label img {
@@ -146,12 +148,10 @@
 
         .message-container.user-message .bubble {
             background-color: #e0f7fa; /* Blue bubble for user messages */
-            align-self: flex-end; /* Align user messages to the right */
         }
 
         .message-container.ai-message .bubble {
             background-color: #fff; /* White bubble for AI messages */
-            align-self: flex-start; /* Align AI messages to the left */
         }
     </style>
 </head>
