@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Testing</title>
+    <title>AI Test</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -194,6 +194,8 @@
     </div>
 
     <script>
+        var x = 0; // Initialize x
+
         function getRandomNumber() {
             return Math.floor(Math.random() * 255) + 1; // Random number between 1 and 255
         }
@@ -216,7 +218,13 @@
                 // Create and add the random numbers bubble to the left
                 var randomBubble = document.createElement("div");
                 randomBubble.className = "random-bubble";
-                randomBubble.innerText = `Is this you lil bro:\n${getRandomString()}`;
+
+                // Use x to determine the content
+                if (x !== 1) {
+                    randomBubble.innerText = "Hello";
+                } else {
+                    randomBubble.innerText = `Is this you lil bro:\n${getRandomString()}`;
+                }
 
                 container.prepend(randomBubble);
 
@@ -282,6 +290,9 @@
 
                 // Scroll to the newest bubble
                 container.scrollTop = container.scrollHeight;
+
+                // Update x for next message
+                x = (x + 1) % 2;
             }
         }
 
