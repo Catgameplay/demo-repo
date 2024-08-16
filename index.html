@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Test</title>
+    <title>AI Testing</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -12,7 +12,7 @@
             padding: 0;
             background-image: url('bg.png');
             background-repeat: repeat;
-            background-size: 50px; /* Smaller image size */
+            background-size: 70px; /* Updated background size */
             height: 100vh;
             overflow: hidden; /* Prevent overflow */
         }
@@ -34,10 +34,10 @@
             background-color: #f1f1f1;
             position: fixed; /* Fixed position */
             bottom: 0;
-            width: calc(100% - 20px); /* Ensure padding */
+            width: calc(100% - 30px); /* Adjusted width */
             box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1; /* Ensure input area is above other content */
-            margin: 0 10px; /* Space from the sides */
+            margin: 0 15px; /* Space from the sides */
         }
 
         textarea {
@@ -60,6 +60,7 @@
             color: white;
             cursor: pointer;
             height: 50px;
+            margin-right: 5px; /* Moved button a bit to the left */
         }
 
         button:hover {
@@ -88,12 +89,7 @@
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
             border-top: 10px solid #e0f7fa; /* Match bubble color */
-            transform: rotate(135deg); /* Rotate triangle */
-        }
-
-        .bubble-container {
-            display: flex;
-            flex-direction: column-reverse;
+            transform: rotate(225deg); /* Rotate triangle */
         }
     </style>
 </head>
@@ -116,12 +112,30 @@
                 bubble.innerText = message;
 
                 // Add the new bubble to the top of the bubble container
-                document.getElementById("bubble-container").prepend(bubble);
+                var container = document.getElementById("bubble-container");
+                container.prepend(bubble);
 
                 // Clear the message box
                 document.getElementById("message").value = "";
+
+                // Scroll to the newest bubble
+                container.scrollTop = container.scrollHeight;
             }
         }
+
+        document.getElementById("message").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                if (event.shiftKey) {
+                    // Add new line in textarea when Shift + Enter is pressed
+                    event.preventDefault();
+                    this.value += "\n";
+                } else {
+                    // Submit message when Enter is pressed
+                    event.preventDefault();
+                    submitMessage();
+                }
+            }
+        });
     </script>
 </body>
 </html>
