@@ -8,32 +8,47 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 0;
             background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
 
         .container {
-            max-width: 500px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            flex-grow: 1;
             padding: 20px;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
         }
 
         textarea {
-            width: 100%;
-            height: 150px;
+            flex-grow: 1;
             padding: 10px;
             font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ccc;
             resize: none;
+            height: 50px;
         }
 
         button {
-            margin-top: 10px;
+            margin-left: 10px;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
@@ -41,6 +56,7 @@
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
+            height: 50px;
         }
 
         button:hover {
@@ -74,18 +90,17 @@
 
         .bubble-container {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: column-reverse;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Write a Message</h2>
-        <textarea id="message" placeholder="Type anything here..."></textarea>
-        <br>
-        <button onclick="submitMessage()">Submit</button>
         <div id="bubble-container" class="bubble-container"></div>
+        <div class="input-area">
+            <textarea id="message" placeholder="Type anything here..."></textarea>
+            <button onclick="submitMessage()">Submit</button>
+        </div>
     </div>
 
     <script>
@@ -97,8 +112,8 @@
                 bubble.className = "bubble";
                 bubble.innerText = message;
 
-                // Add the new bubble to the bubble container
-                document.getElementById("bubble-container").appendChild(bubble);
+                // Add the new bubble to the top of the bubble container
+                document.getElementById("bubble-container").prepend(bubble);
 
                 // Clear the message box
                 document.getElementById("message").value = "";
