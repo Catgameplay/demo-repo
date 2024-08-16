@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Testing</title>
+    <title>AI Test</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -205,6 +205,14 @@
         function submitMessage() {
             var message = document.getElementById("message").value;
             if (message.trim() !== "") {
+                var container = document.getElementById("bubble-container");
+
+                // Remove existing random bubbles if any
+                var existingRandomBubbles = document.querySelectorAll('.random-bubble');
+                existingRandomBubbles.forEach(function(bubble) {
+                    bubble.remove();
+                });
+
                 // Create a new message container for user messages
                 var messageContainer = document.createElement("div");
                 messageContainer.className = "message-container user-message";
@@ -239,9 +247,6 @@
                 messageContainer.appendChild(bubble);
 
                 // Add the new message container to the top of the bubble container
-                var container = document.getElementById("bubble-container");
-                
-                // Append the message container to the top of the container
                 container.prepend(messageContainer);
 
                 // Create and add the random numbers bubble to the left
