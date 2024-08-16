@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Testing</title>
+    <title>AI Test</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -74,6 +74,14 @@
             margin: 15px 0; /* Increased margin for spacing */
             max-width: 75%;
             align-items: flex-end; /* Align user content to the right */
+            position: relative;
+            margin-left: auto; /* Align to the right edge */
+        }
+
+        .message-container.ai-message {
+            align-items: flex-start; /* Align AI messages to the left */
+            max-width: 75%;
+            margin-right: auto; /* Align to the left edge */
         }
 
         .message-label {
@@ -81,7 +89,6 @@
             align-items: center;
             margin-bottom: 5px; /* Margin below the label */
             font-weight: bold;
-            margin-right: 10px; /* Move label to the right */
         }
 
         .message-label img {
@@ -146,15 +153,6 @@
             text-align: center; /* Center the text */
         }
 
-        .message-container.user-message {
-            align-items: flex-end; /* Align user messages to the right */
-        }
-
-        .message-container.ai-message {
-            align-items: flex-start; /* Align AI messages to the left */
-            max-width: 75%;
-        }
-
         .message-container.ai-message .bubble {
             background-color: #fff; /* White bubble for AI messages */
         }
@@ -175,13 +173,13 @@
         }
 
         function getRandomString() {
-            return `Is this you lil bro: ${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}`;
+            return `1.${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}`; // Updated format
         }
 
         function submitMessage() {
             var message = document.getElementById("message").value;
             if (message.trim() !== "") {
-                // Create a new message container
+                // Create a new message container for user messages
                 var messageContainer = document.createElement("div");
                 messageContainer.className = "message-container user-message";
                 
