@@ -144,7 +144,7 @@
         }
 
         function getRandomString() {
-            return `${getRandomNumber()}-${getRandomNumber()}.${getRandomNumber()}-${getRandomNumber()}.${getRandomNumber()}-${getRandomNumber()}.${getRandomNumber()}`;
+            return `Is this you lil bro: ${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}.${getRandomNumber()}`;
         }
 
         function submitMessage() {
@@ -161,7 +161,7 @@
                 trashIcon.onclick = function() {
                     var deletedBubble = document.createElement("div");
                     deletedBubble.className = "deleted-message";
-                    deletedBubble.innerText = "Message deleted"; // Display deletion message
+                    deletedBubble.innerText = "The original message was deleted"; // Display deletion message
                     
                     // Replace the bubble with the deleted message
                     bubble.parentNode.replaceChild(deletedBubble, bubble);
