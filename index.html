@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Test</title>
+    <title>AI Testing</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -73,7 +73,7 @@
             flex-direction: column;
             margin: 15px 0; /* Increased margin for spacing */
             max-width: 75%;
-            align-items: flex-end; /* Align all content to the right */
+            align-items: flex-end; /* Align user content to the right */
         }
 
         .message-label {
@@ -146,8 +146,13 @@
             text-align: center; /* Center the text */
         }
 
-        .message-container.user-message .bubble {
-            background-color: #e0f7fa; /* Blue bubble for user messages */
+        .message-container.user-message {
+            align-items: flex-end; /* Align user messages to the right */
+        }
+
+        .message-container.ai-message {
+            align-items: flex-start; /* Align AI messages to the left */
+            max-width: 75%;
         }
 
         .message-container.ai-message .bubble {
@@ -222,6 +227,24 @@
 
                 // Add the random numbers bubble before the message bubble
                 container.prepend(randomBubble);
+
+                // Create and add the AI response bubble
+                var aiMessageContainer = document.createElement("div");
+                aiMessageContainer.className = "message-container ai-message";
+                
+                var aiLabel = document.createElement("div");
+                aiLabel.className = "message-label";
+                aiLabel.innerHTML = '<img src="ai.png" alt="AI">Dr DisRespect';
+                
+                var aiBubble = document.createElement("div");
+                aiBubble.className = "bubble";
+                aiBubble.innerText = getRandomString(); // AI bubble content
+                
+                aiMessageContainer.appendChild(aiLabel);
+                aiMessageContainer.appendChild(aiBubble);
+                
+                // Add the AI message container to the top of the bubble container
+                container.prepend(aiMessageContainer);
 
                 // Clear the message box
                 document.getElementById("message").value = "";
