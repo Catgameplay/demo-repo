@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Testing</title>
+    <title>AI Test</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -25,6 +25,7 @@
             flex-direction: column-reverse; /* New messages appear at the top */
             position: relative;
             height: calc(100vh - 80px); /* Adjust height considering the input area */
+            margin-bottom: 20px; /* Ensure some space at the bottom for input area */
         }
 
         .input-area {
@@ -70,26 +71,34 @@
         .bubble {
             background-color: #e0f7fa;
             padding: 15px;
-            margin: 10px 0;
+            margin: 5px 0; /* Reduced margin to move bubbles higher */
             border-radius: 20px;
             max-width: 75%;
             position: relative;
             word-wrap: break-word;
             align-self: flex-end;
             background-color: rgba(224, 247, 250, 1); /* Ensure blue bubble has no transparency */
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Align trash icon to the right */
         }
 
-        .bubble:before {
-            content: '';
-            position: absolute;
-            bottom: -10px; /* Position below the bubble */
-            right: 10px;  /* Position to the right of the bubble */
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid #e0f7fa; /* Match bubble color */
-            transform: rotate(225deg); /* Rotate triangle */
+        .bubble:hover .trash-icon {
+            display: block; /* Show trash icon on hover */
+        }
+
+        .trash-icon {
+            display: none;
+            width: 20px;
+            height: 20px;
+            background-image: url('trash.png');
+            background-size: cover;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .bubble .trash-icon:hover {
+            opacity: 0.7; /* Slight opacity change on hover */
         }
     </style>
 </head>
@@ -110,6 +119,16 @@
                 var bubble = document.createElement("div");
                 bubble.className = "bubble";
                 bubble.innerText = message;
+
+                // Create a trash icon
+                var trashIcon = document.createElement("div");
+                trashIcon.className = "trash-icon";
+                trashIcon.onclick = function() {
+                    bubble.remove(); // Remove the bubble when trash icon is clicked
+                };
+
+                // Append trash icon to the bubble
+                bubble.appendChild(trashIcon);
 
                 // Add the new bubble to the top of the bubble container
                 var container = document.getElementById("bubble-container");
