@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Test</title>
+    <title>AI Testing</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('bg.jpg'); /* Updated background image */
+            background-image: url('bg.jpg');
             background-repeat: repeat;
-            background-size: 70px; /* Adjusted background size */
+            background-size: 70px;
             height: 100vh;
-            overflow: hidden; /* Prevent overflow */
+            overflow: hidden;
         }
 
         .container {
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0); /* Transparent background */
+            background-color: rgba(255, 255, 255, 0);
             overflow-y: auto;
             display: flex;
-            flex-direction: column-reverse; /* New messages appear at the top */
+            flex-direction: column-reverse;
             position: relative;
-            height: calc(100vh - 80px); /* Adjust height considering the input area */
-            margin-bottom: 80px; /* Ensure enough space at the bottom for input area */
+            height: calc(100vh - 80px);
+            margin-bottom: 80px;
         }
 
         .input-area {
@@ -33,12 +33,12 @@
             align-items: center;
             padding: 10px;
             background-color: #f1f1f1;
-            position: fixed; /* Fixed position */
+            position: fixed;
             bottom: 0;
-            width: calc(100% - 30px); /* Adjusted width */
+            width: calc(100% - 30px);
             box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1; /* Ensure input area is above other content */
-            margin: 0 15px; /* Space from the sides */
+            z-index: 1;
+            margin: 0 15px;
         }
 
         textarea {
@@ -61,7 +61,7 @@
             color: white;
             cursor: pointer;
             height: 50px;
-            margin-right: 5px; /* Moved button a bit to the left */
+            margin-right: 5px;
         }
 
         button:hover {
@@ -71,23 +71,24 @@
         .message-container {
             display: flex;
             flex-direction: column;
-            margin: 15px 0; /* Increased margin for spacing */
+            margin: 15px 0;
             max-width: 75%;
-            align-items: flex-end; /* Align user content to the right */
+            align-items: flex-end;
             position: relative;
-            margin-left: auto; /* Align to the right edge */
+            margin-left: auto;
         }
 
         .message-container.ai-message {
-            align-items: flex-start; /* Align AI messages to the left */
+            align-items: flex-start;
             max-width: 75%;
-            margin-right: auto; /* Align to the left edge */
+            margin-right: auto;
+            margin-left: 0; /* Align to the left edge */
         }
 
         .message-label {
             display: flex;
             align-items: center;
-            margin-bottom: 5px; /* Margin below the label */
+            margin-bottom: 5px;
             font-weight: bold;
         }
 
@@ -104,14 +105,14 @@
             border-radius: 20px;
             word-wrap: break-word;
             position: relative;
-            background-color: rgba(224, 247, 250, 1); /* Ensure blue bubble has no transparency */
+            background-color: rgba(224, 247, 250, 1);
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Align trash icon to the right */
+            justify-content: space-between;
         }
 
         .bubble:hover .trash-icon {
-            display: block; /* Show trash icon on hover */
+            display: block;
         }
 
         .trash-icon {
@@ -125,36 +126,36 @@
         }
 
         .bubble .trash-icon:hover {
-            opacity: 0.7; /* Slight opacity change on hover */
+            opacity: 0.7;
         }
 
         .random-bubble {
             background-color: white;
             padding: 15px;
-            margin: 15px 0; /* Increased margin for spacing */
+            margin: 15px 0;
             border-radius: 20px;
             max-width: 50%;
             position: relative;
             word-wrap: break-word;
-            color: black; /* Text color for better readability */
-            margin-bottom: 30px; /* Ensure it spawns higher from the input box */
+            color: black;
+            margin-bottom: 30px;
         }
 
         .deleted-message {
-            background-color: #e0e0e0; /* Light gray background for deleted messages */
+            background-color: #e0e0e0;
             padding: 15px;
-            margin: 15px 0; /* Increased margin for spacing */
+            margin: 15px 0;
             border-radius: 20px;
             max-width: 75%;
             position: relative;
             word-wrap: break-word;
-            font-style: italic; /* Italicized text */
-            color: #666; /* Dark gray color for deleted messages */
-            text-align: center; /* Center the text */
+            font-style: italic;
+            color: #666;
+            text-align: center;
         }
 
         .message-container.ai-message .bubble {
-            background-color: #fff; /* White bubble for AI messages */
+            background-color: #fff;
         }
     </style>
 </head>
@@ -199,7 +200,7 @@
                 trashIcon.onclick = function() {
                     var deletedBubble = document.createElement("div");
                     deletedBubble.className = "deleted-message";
-                    deletedBubble.innerText = "The original message was deleted"; // Updated deletion message
+                    deletedBubble.innerText = "The original message was deleted";
                     
                     // Replace the bubble with the deleted message
                     bubble.parentNode.replaceChild(deletedBubble, bubble);
