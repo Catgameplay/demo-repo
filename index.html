@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Test</title>
+    <title>AI Chat</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -70,14 +70,15 @@
 
         .message-container {
             display: flex;
-            align-items: center;
-            margin: 5px 0;
+            flex-direction: column;
+            margin: 15px 0; /* Increased margin for spacing */
+            max-width: 75%;
         }
 
         .message-label {
             display: flex;
             align-items: center;
-            margin-right: 10px;
+            margin-bottom: 5px; /* Margin below the label */
             font-weight: bold;
         }
 
@@ -91,12 +92,9 @@
         .bubble {
             background-color: #e0f7fa;
             padding: 15px;
-            margin: 5px 0; /* Reduced margin for less distance between bubbles */
             border-radius: 20px;
-            max-width: 75%;
-            position: relative;
             word-wrap: break-word;
-            align-self: flex-end;
+            position: relative;
             background-color: rgba(224, 247, 250, 1); /* Ensure blue bubble has no transparency */
             display: flex;
             align-items: center;
@@ -124,12 +122,11 @@
         .random-bubble {
             background-color: white;
             padding: 15px;
-            margin: 5px 0; /* Reduced margin for less distance between bubbles */
+            margin: 15px 0; /* Increased margin for spacing */
             border-radius: 20px;
             max-width: 50%;
             position: relative;
             word-wrap: break-word;
-            align-self: flex-start; /* Align to the left */
             color: black; /* Text color for better readability */
             margin-bottom: 30px; /* Ensure it spawns higher from the input box */
         }
@@ -137,15 +134,24 @@
         .deleted-message {
             background-color: #e0e0e0; /* Light gray background for deleted messages */
             padding: 15px;
-            margin: 5px 0; /* Reduced margin for less distance between bubbles */
+            margin: 15px 0; /* Increased margin for spacing */
             border-radius: 20px;
             max-width: 75%;
             position: relative;
             word-wrap: break-word;
-            align-self: flex-end;
             font-style: italic; /* Italicized text */
             color: #666; /* Dark gray color for deleted messages */
             text-align: center; /* Center the text */
+        }
+
+        .message-container.user-message .bubble {
+            background-color: #e0f7fa; /* Blue bubble for user messages */
+            align-self: flex-end; /* Align user messages to the right */
+        }
+
+        .message-container.ai-message .bubble {
+            background-color: #fff; /* White bubble for AI messages */
+            align-self: flex-start; /* Align AI messages to the left */
         }
     </style>
 </head>
@@ -172,18 +178,13 @@
             if (message.trim() !== "") {
                 // Create a new message container
                 var messageContainer = document.createElement("div");
-                messageContainer.className = "message-container";
+                messageContainer.className = "message-container user-message";
                 
                 // Create the label for user messages
                 var userLabel = document.createElement("div");
                 userLabel.className = "message-label";
                 userLabel.innerHTML = '<img src="user.png" alt="User">You';
                 
-                // Create the label for AI messages
-                var aiLabel = document.createElement("div");
-                aiLabel.className = "message-label";
-                aiLabel.innerHTML = '<img src="ai.png" alt="AI">Dr DisRespect';
-
                 // Create a new speech bubble
                 var bubble = document.createElement("div");
                 bubble.className = "bubble";
@@ -204,14 +205,14 @@
                 // Append trash icon to the bubble
                 bubble.appendChild(trashIcon);
 
-                // Add the new bubble to the top of the bubble container
+                // Add the new bubble to the message container
+                messageContainer.appendChild(userLabel);
+                messageContainer.appendChild(bubble);
+
+                // Add the new message container to the top of the bubble container
                 var container = document.getElementById("bubble-container");
                 
-                // Append the label and bubble to the message container
-                messageContainer.appendChild(userLabel); // Adjust based on sender
-                messageContainer.appendChild(bubble);
-                
-                // Add the new message container to the top of the container
+                // Append the message container to the top of the container
                 container.prepend(messageContainer);
 
                 // Create and add the random numbers bubble to the left
