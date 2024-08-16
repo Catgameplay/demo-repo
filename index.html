@@ -181,6 +181,8 @@
     </div>
 
     <script>
+        let x = 0;
+
         function submitMessage() {
             var message = document.getElementById("message").value;
             if (message.trim() !== "") {
@@ -238,7 +240,7 @@
                 
                 var aiBubble = document.createElement("div");
                 aiBubble.className = "bubble";
-                aiBubble.innerText = `Hello are u a miner?\nIs this you lil bro:\n${getRandomString()}`; // AI bubble content
+                aiBubble.innerText = getAIResponse(); // AI bubble content
                 
                 aiMessageContainer.appendChild(aiLabel);
                 aiMessageContainer.appendChild(aiBubble);
@@ -251,6 +253,15 @@
 
                 // Scroll to the newest bubble
                 container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function getAIResponse() {
+            x = (x + 1) % 2;
+            if (x === 1) {
+                return `Is this you lil bro:\n${getRandomString()}`; // Original response
+            } else {
+                return `Hello! How can I assist you today?\n${getRandomString()}`; // Alternative response
             }
         }
 
