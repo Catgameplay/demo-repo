@@ -3,10 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fall Back</title>
+    <title>AI Chat</title>
     <link rel="icon" href="cont.png">
     <style>
         /* Your existing styles */
+        /* Adjustments for Dr DisRespect styling */
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0;
+            max-width: 75%;
+            align-items: flex-end;
+            position: relative;
+            margin-left: auto;
+            box-sizing: border-box;
+        }
+
+        .message-container.ai-message {
+            align-items: flex-start;
+            max-width: 75%;
+            margin-right: auto;
+            margin-left: 0;
+            box-sizing: border-box;
+        }
+
+        .message-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .message-label img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .bubble {
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 20px;
+            word-wrap: break-word;
+            position: relative;
+            background-color: rgba(224, 247, 250, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        .bubble:hover .trash-icon {
+            display: block;
+        }
+
+        .trash-icon {
+            display: none;
+            width: 20px;
+            height: 20px;
+            background-image: url('trash.png');
+            background-size: cover;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .bubble .trash-icon:hover {
+            opacity: 0.7;
+        }
+
+        .deleted-message {
+            background-color: #e0e0e0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 20px;
+            max-width: 75%;
+            position: relative;
+            word-wrap: break-word;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .message-container.ai-message .bubble {
+            background-color: #fff;
+        }
+
+        .ai-message-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .ai-message-label img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -103,9 +199,9 @@
                 // Fetch information from Wikipedia
                 return await fetchWikipediaSummary(message);
             } else if (messageCount === 1) {
-                return "Hello! I'm Dr DisRespect. How can I assist you today?"; // Dr DisRespect-like response
+                return "Hello there! How can I assist you today? Feel free to ask me anything."; // ChatGPT-like response
             } else {
-                return "I'm Dr DisRespect, here to help with your questions. What can I do for you?"; // Dr DisRespect-like response
+                return "I'm here to help with any questions you might have. What can I do for you?"; // ChatGPT-like response
             }
         }
 
