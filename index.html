@@ -6,8 +6,74 @@
     <title>AI Chat</title>
     <link rel="icon" href="cont.png">
     <style>
-        /* Your existing styles */
-        /* Adjustments for Dr DisRespect styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.jpg');
+            background-repeat: repeat;
+            background-size: 70px;
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse;
+            position: relative;
+            height: calc(100vh - 80px);
+            margin-bottom: 80px;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            position: fixed;
+            bottom: 0;
+            width: calc(100% - 30px);
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            margin: 0 15px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+            height: 50px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            height: 50px;
+            margin-right: 5px;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
         .message-container {
             display: flex;
             flex-direction: column;
@@ -117,7 +183,7 @@
     <script>
         let messageCount = 0;
 
-        async function submitMessage() {
+        function submitMessage() {
             const message = document.getElementById("message").value;
             if (message.trim() !== "") {
                 const container = document.getElementById("bubble-container");
@@ -170,11 +236,11 @@
                 
                 const aiLabel = document.createElement("div");
                 aiLabel.className = "ai-message-label";
-                aiLabel.innerHTML = '<img src="ai.png" alt="AI">Dr DisRespect';
+                aiLabel.innerHTML = '<img src="ai.png" alt="AI">ChatGPT';
                 
                 const aiBubble = document.createElement("div");
                 aiBubble.className = "bubble";
-                aiBubble.innerText = await getAIResponse(message); // AI bubble content
+                aiBubble.innerText = getAIResponse(); // AI bubble content
                 
                 aiMessageContainer.appendChild(aiLabel);
                 aiMessageContainer.appendChild(aiBubble);
@@ -190,44 +256,12 @@
             }
         }
 
-        async function getAIResponse(message) {
+        function getAIResponse() {
             messageCount = (messageCount + 1) % 2;
-            if (message.trim().match(/^\d+[\+\-\*\/]\d+$/)) {
-                // Basic math problem
-                return generateMathExplanation(message);
-            } else if (message.toLowerCase().includes("where is") || message.toLowerCase().includes("what is")) {
-                // Fetch information from Wikipedia
-                return await fetchWikipediaSummary(message);
-            } else if (messageCount === 1) {
+            if (messageCount === 1) {
                 return "Hello there! How can I assist you today? Feel free to ask me anything."; // ChatGPT-like response
             } else {
                 return "I'm here to help with any questions you might have. What can I do for you?"; // ChatGPT-like response
-            }
-        }
-
-        function generateMathExplanation(equation) {
-            try {
-                const result = eval(equation);
-                return `To solve the equation "${equation}":
-1. Identify the operation to perform.
-2. Perform the calculation.
-3. The result is ${result}.`;
-            } catch (error) {
-                return "I'm sorry, I couldn't understand the math problem.";
-            }
-        }
-
-        async function fetchWikipediaSummary(query) {
-            const endpoint = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
-            try {
-                const response = await fetch(endpoint);
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                const data = await response.json();
-                return data.extract || "I couldn't find any information on that topic.";
-            } catch (error) {
-                return "Sorry, I couldn't fetch information at the moment.";
             }
         }
 
