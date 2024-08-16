@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Test</title>
+    <title>AI Testing</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -18,13 +18,13 @@
         }
 
         .container {
-            flex-grow: 1;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0); /* Transparent background */
             overflow-y: auto;
             display: flex;
             flex-direction: column-reverse; /* New messages appear at the top */
             position: relative;
+            height: calc(100vh - 80px); /* Adjust height considering the input area */
         }
 
         .input-area {
