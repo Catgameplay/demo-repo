@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Test</title>
+    <title>AI Testing</title>
     <link rel="icon" href="cont.png">
     <style>
         body {
@@ -186,7 +186,7 @@
 </head>
 <body>
     <div class="container" id="bubble-container">
-        <!-- Bubbles will be added here -->
+        <!-- Random bubbles will be added here -->
     </div>
     <div class="input-area">
         <textarea id="message" placeholder="Type anything here..."></textarea>
@@ -212,6 +212,13 @@
                 existingRandomBubbles.forEach(function(bubble) {
                     bubble.remove();
                 });
+
+                // Create and add the random numbers bubble to the left
+                var randomBubble = document.createElement("div");
+                randomBubble.className = "random-bubble";
+                randomBubble.innerText = `Is this you lil bro:\n${getRandomString()}`;
+
+                container.prepend(randomBubble);
 
                 // Create a new message container for user messages
                 var messageContainer = document.createElement("div");
@@ -248,14 +255,6 @@
 
                 // Add the new message container to the top of the bubble container
                 container.prepend(messageContainer);
-
-                // Create and add the random numbers bubble to the left
-                var randomBubble = document.createElement("div");
-                randomBubble.className = "random-bubble";
-                randomBubble.innerText = `Is this you lil bro:\n${getRandomString()}`;
-
-                // Add the random numbers bubble before the message bubble
-                container.prepend(randomBubble);
 
                 // Clear the message box
                 document.getElementById("message").value = "";
